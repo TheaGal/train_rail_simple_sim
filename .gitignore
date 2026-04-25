@@ -1,0 +1,21 @@
+# VSCode cache folder.
+.vscode/
+
+# CMake build folder.
+[Bb]uild/
+
+# CMake VSCode ext cache folder.
+.cache/
+
+# Clangd compile_commands.json (@NOTE: Only appears when using clang compiler)
+compile_commands.json
+
+# Scene importer tool python env.
+scene_importer_tool/venv/
+scene_importer_tool/env/
+
+# This specific file that's used as a temp file during editing time should be ignored.
+assets/scenes/._temp_btscene_save_for_playmode.btscene
+
+# Get this macOS shit OUTTA HERE
+.DS_Store
