@@ -21,7 +21,7 @@ int32_t main()
         canvas.plot_char(pos_x, pos_y, 'X');
         canvas.render();
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(33));
+        std::this_thread::sleep_for(std::chrono::milliseconds(16));
 
         pos_x++;
 
