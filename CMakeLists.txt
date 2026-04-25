@@ -71,25 +71,15 @@ endif()
 
 # Dependencies.
 set(DEPENDENCY_INCLUDE_DIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/cpp_glm/include  # Header only.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/entt/src  # Header only.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/fmt/include
-    $ENV{FMOD_STUDIO_API_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui  # Header only.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/JoltPhysics
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/json/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb  # Header only (essentially).
-    # ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stduuid/include  # @NOTE: Removing this so that it's not easy to mix up the uuid.h header files.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/tomlplusplus/include  # Header only.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/TXP_renderer/include
+
 )
 
-add_subdirectory(third_party/fmt)
-set(DOUBLE_PRECISION ON CACHE BOOL "Use double precision math" FORCE)  # Use double precision for large, open world physics.
-add_subdirectory(third_party/JoltPhysics/Build)
-add_subdirectory(third_party/json)
-add_subdirectory(third_party/stduuid)
-add_subdirectory(third_party/TXP_renderer)
+# add_subdirectory(third_party/fmt)
+# set(DOUBLE_PRECISION ON CACHE BOOL "Use double precision math" FORCE)  # Use double precision for large, open world physics.
+# add_subdirectory(third_party/JoltPhysics/Build)
+# add_subdirectory(third_party/json)
+# add_subdirectory(third_party/stduuid)
+# add_subdirectory(third_party/TXP_renderer)
 
 # Create symlink to assets folder.
 if(DEFINED ASSET_DIR)
@@ -133,6 +123,9 @@ endif()
 
 # Main source files.
 set(MAIN_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ascii_canvas.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ascii_canvas.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.h
 )
@@ -141,10 +134,6 @@ set(MAIN_SOURCES
 add_executable(${PROJECT_NAME}
     # Main source files.
     ${MAIN_SOURCES}
-
-    # stb header files.
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb/stb_image.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb/stb_image_resize2.h
 
     # Native extras.
     ${WIN64_RESOURCES}
@@ -160,12 +149,12 @@ target_include_directories(${PROJECT_NAME}
         ${DEPENDENCY_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_NAME}
-    txp_renderer
-    ${FMOD_LIBRARIES}
-    fmt::fmt
-    Jolt
-    nlohmann_json::nlohmann_json
-    stduuid
+    # txp_renderer
+    # ${FMOD_LIBRARIES}
+    # fmt::fmt
+    # Jolt
+    # nlohmann_json::nlohmann_json
+    # stduuid
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
